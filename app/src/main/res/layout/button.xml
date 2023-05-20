@@ -4,25 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="1dp">
 
-    <include
-        android:id="@+id/layout_screen"
+    <TextView
+        android:background="@drawable/button_background"
+        android:id="@+id/calculadora_button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/layout_dashboard"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:gravity="center"
+        android:minHeight="46dp"
+        android:minWidth="60dp"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        layout="@layout/screen" />
-
-    <include
-        android:id="@+id/layout_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        layout="@layout/dashboard" />
+        tools:text="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
