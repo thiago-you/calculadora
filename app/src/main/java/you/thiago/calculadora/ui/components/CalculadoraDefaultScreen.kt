@@ -30,7 +30,7 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
         } else {
             when (value) {
                 "c" -> clearValue()
-                "del" -> deleteValue(currentValue)
+                "⌫" -> deleteValue(currentValue)
                 "=" -> calculateValue(currentValue)
                 "signal" -> invertSignal(currentValue)
                 else -> addValue(currentValue, value)

@@ -43,7 +43,7 @@
             app:btnBackground="@drawable/button_background_dark"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:value="DEL" />
+            app:value="⌫" />
 
     </LinearLayout>
 

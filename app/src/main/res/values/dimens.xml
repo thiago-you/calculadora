@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="button_radius">4dp</dimen>
-    <dimen name="button_border">1dp</dimen>
+    <dimen name="button_border">0dp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
     <dimen name="screen_text_size">70sp</dimen>
 </resources>
