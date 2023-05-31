@@ -1,8 +1,10 @@
 package you.thiago.calculadora.ui
 
 import android.content.Context
+import android.os.SystemClock
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.StringRes
@@ -24,6 +26,11 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
 
     private val calculadora: Calculadora by lazy { CalculadoraBasic(context) }
     private val textViewScreen: TextView? by lazy { findViewById(R.id.tv_screen) }
+
+    companion object {
+        private var lastTimeClicked: Long = 0
+        private var defaultInterval: Long = 300
+    }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.default_screen, this)
@@ -49,12 +56,12 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
         val imageView = findViewById<ImageView>(R.id.theme_switch)
 
         if (data.value == ThemeState.LIGHT) {
-            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_mode_night_24))
-        } else {
             imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_wb_sunny_24))
+        } else {
+            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_mode_night_24))
         }
 
-        imageView?.setOnClickListener {
+        imageView?.onSafeClickListener {
             data.postValue(data.value?.switchTheme())
         }
 
@@ -63,5 +70,17 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
 
     fun setButtonValue(value: String) {
         textViewScreen?.text = calculadora.operateValue(textViewScreen?.text.toString(), value)
+    }
+
+    private fun View.onSafeClickListener(onClickListener: () -> Unit) {
+        this.setOnClickListener {
+            if (SystemClock.elapsedRealtime() - lastTimeClicked < defaultInterval) {
+                return@setOnClickListener
+            }
+
+            lastTimeClicked = SystemClock.elapsedRealtime()
+
+            onClickListener()
+        }
     }
 }

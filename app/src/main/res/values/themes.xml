@@ -1,13 +1,13 @@
 <resources>
     <style name="Base.Theme.Calculadora" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:colorPrimary">@color/colorSecondary</item>
-        <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="android:statusBarColor">@color/colorBackground</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorWhiteBackground</item>
+        <item name="android:statusBarColor">@color/colorWhiteBackground</item>
     </style>
 
     <style name="Theme.Calculadora" parent="Base.Theme.Calculadora">
-        <item name="android:colorPrimary">@color/colorSecondary</item>
-        <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="android:statusBarColor">@color/colorBackground</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorWhiteBackground</item>
+        <item name="android:statusBarColor">@color/colorWhiteBackground</item>
     </style>
 </resources>
