@@ -33,9 +33,9 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
         val imageView = findViewById<ImageView>(R.id.theme_switch)
 
         if (data.value == ThemeState.LIGHT) {
-            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_wb_sunny_24))
-        } else {
             imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_mode_night_24))
+        } else {
+            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_wb_sunny_24))
         }
 
         imageView?.setOnClickListener {

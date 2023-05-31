@@ -65,12 +65,12 @@ class MainActivity : AppCompatActivity() {
     private fun configTheme(theme: ThemeState) {
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                if (theme == ThemeState.DARK) {
+                if (theme == ThemeState.LIGHT) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                if (theme == ThemeState.LIGHT) {
+                if (theme == ThemeState.DARK) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }
             }
