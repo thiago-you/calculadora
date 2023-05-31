@@ -1,11 +1,11 @@
-package you.thiago.calculadora.ui.components.dashboard
+package you.thiago.calculadora.ui.dashboard
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import you.thiago.calculadora.R
-import you.thiago.calculadora.ui.components.CalculadoraButton
-import you.thiago.calculadora.ui.components.CalculadoraDefaultScreen
+import you.thiago.calculadora.ui.CalculadoraButton
+import you.thiago.calculadora.ui.CalculadoraDefaultScreen
 
 open class CalculadoraDashboard @JvmOverloads constructor(
     context: Context,

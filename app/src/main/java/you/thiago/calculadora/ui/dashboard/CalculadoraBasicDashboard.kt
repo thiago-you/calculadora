@@ -1,11 +1,11 @@
-package you.thiago.calculadora.ui.components.dashboard
+package you.thiago.calculadora.ui.dashboard
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import you.thiago.calculadora.R
 
-class CalculadoraAdvancedDashboard @JvmOverloads constructor(
+class CalculadoraBasicDashboard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -13,7 +13,7 @@ class CalculadoraAdvancedDashboard @JvmOverloads constructor(
 ) : CalculadoraDashboard(context, attrs, defStyleAttr, defStyleRes) {
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.advanced_dashboard, this)
+        LayoutInflater.from(context).inflate(R.layout.basic_dashboard, this)
         setupButtons()
     }
 }

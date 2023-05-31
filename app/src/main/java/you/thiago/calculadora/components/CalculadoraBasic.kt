@@ -1,70 +1,18 @@
-package you.thiago.calculadora.ui.components
+package you.thiago.calculadora.components
 
 import android.content.Context
-import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.annotation.StringRes
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import you.thiago.calculadora.R
-import you.thiago.calculadora.enums.ThemeState
+import java.lang.ref.WeakReference
 
-class CalculadoraDefaultScreen @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
-    defStyleRes: Int = 0,
-) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
+open class CalculadoraBasic(context: Context) : Calculadora {
 
-    private val textViewScreen: TextView? by lazy { findViewById(R.id.tv_screen) }
+    private val weakContext = WeakReference(context)
 
-    init {
-        LayoutInflater.from(context).inflate(R.layout.default_screen, this)
-    }
-
-    fun setTitle(@StringRes title: Int) {
-        findViewById<TextView>(R.id.tv_screen_title)?.setText(title)
-    }
-
-    fun setupDashboardSwitch(callback: () -> Unit) {
-        findViewById<ImageView>(R.id.swicth_dashboard)?.setOnClickListener {
-            callback()
-        }
-
-        findViewById<TextView>(R.id.tv_screen_title)?.setOnClickListener {
-            callback()
-        }
-    }
-
-    fun setupThemeSwitch(selectedTheme: ThemeState): LiveData<ThemeState?> {
-        val data = MutableLiveData(selectedTheme)
-
-        val imageView = findViewById<ImageView>(R.id.theme_switch)
-
-        if (data.value == ThemeState.LIGHT) {
-            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_mode_night_24))
+    override fun operateValue(currentValue: String, value: String): String {
+        return if (currentValue == "0" && value.isNumeric() || (currentValue == "0" && value == "-")) {
+            value
         } else {
-            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_wb_sunny_24))
-        }
-
-        imageView?.setOnClickListener {
-            data.postValue(data.value?.switchTheme())
-        }
-
-        return data
-    }
-
-    fun setButtonValue(value: String) {
-        val currentValue = textViewScreen?.text.toString()
-
-        if (currentValue == "0" && value.isNumeric() || (currentValue == "0" && value == "-")) {
-            textViewScreen?.text = value
-        } else {
-            when (value) {
+            return when (value) {
                 "c" -> clearValue()
                 "⌫" -> deleteValue(currentValue)
                 "=" -> calculateValue(currentValue)
@@ -74,37 +22,39 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
         }
     }
 
-    private fun clearValue() {
-        textViewScreen?.text = context.getString(R.string.screenStartValue)
+    private fun clearValue(): String {
+        return weakContext.get()?.getString(R.string.screenStartValue) ?: String()
     }
 
-    private fun deleteValue(currentValue: String) {
+    private fun deleteValue(currentValue: String): String {
         if (currentValue != "0") {
             val isNegativeValue = currentValue.first() == '-' && currentValue.length == 2
             val isUniqueValue = currentValue.length == 1
 
-            if (isUniqueValue || isNegativeValue) {
-                textViewScreen?.text = context.getString(R.string.screenStartValue)
+            return if (isUniqueValue || isNegativeValue) {
+                weakContext.get()?.getString(R.string.screenStartValue) ?: String()
             } else {
-                textViewScreen?.text = currentValue.dropLast(1)
+                currentValue.dropLast(1)
             }
         }
+
+        return String()
     }
 
-    private fun addValue(currentValue: String, value: String) {
+    private fun addValue(currentValue: String, value: String): String {
         if (value == "," && currentValue.last() == ',') {
-            return
+            return String()
         }
 
-        if (value.isNumeric()) {
-            textViewScreen?.text = currentValue.plus(value)
+        return if (value.isNumeric()) {
+            currentValue.plus(value)
         } else {
             if (!currentValue.last().isNumeric()) {
-                textViewScreen?.text = textViewScreen?.text.toString().dropLast(1).plus(value)
+                currentValue.dropLast(1).plus(value)
             } else if (value != "," && currentValue.hasOperator()) {
-                textViewScreen?.text = calculateValue(currentValue).plus(value)
+                calculateValue(currentValue).plus(value)
             } else {
-                textViewScreen?.text = textViewScreen?.text.toString().plus(value)
+                currentValue.plus(value)
             }
         }
     }
@@ -135,22 +85,18 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
         val firstNumber = sequences[0].convertDouble()
         val secondNumber = sequences[1].convertDouble()
 
-        val result = doOperation(firstNumber, secondNumber, operator).addSeparatorToOperation()
-
-        textViewScreen?.text = result
-
-        return result
+        return doOperation(firstNumber, secondNumber, operator).addSeparatorToOperation()
     }
 
-    private fun invertSignal(currentValue: String) {
+    protected fun invertSignal(currentValue: String): String {
         if (currentValue.isBlank() || currentValue == "0") {
-            return
+            return String()
         }
 
-        if (currentValue.first() == '-') {
-            textViewScreen?.text = currentValue.drop(1)
+        return if (currentValue.first() == '-') {
+            currentValue.drop(1)
         } else {
-            textViewScreen?.text = "-".plus(currentValue)
+            "-".plus(currentValue)
         }
     }
 

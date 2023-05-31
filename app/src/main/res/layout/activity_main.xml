@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <you.thiago.calculadora.ui.components.CalculadoraDefaultScreen
+    <you.thiago.calculadora.ui.CalculadoraDefaultScreen
         android:id="@+id/screen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,12 +23,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <you.thiago.calculadora.ui.components.dashboard.CalculadoraBasicDashboard
+        <you.thiago.calculadora.ui.dashboard.CalculadoraBasicDashboard
             android:id="@+id/dashboard_basic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <you.thiago.calculadora.ui.components.dashboard.CalculadoraAdvancedDashboard
+        <you.thiago.calculadora.ui.dashboard.CalculadoraAdvancedDashboard
             android:id="@+id/dashboard_advanced"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
