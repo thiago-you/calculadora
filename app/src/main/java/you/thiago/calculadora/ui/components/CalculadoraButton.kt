@@ -15,6 +15,8 @@ class CalculadoraButton @JvmOverloads constructor(
     defStyleRes: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
+    var value: String = ""
+
     companion object {
         private const val DEFAULT_DIMENSION = 22
     }
@@ -48,5 +50,21 @@ class CalculadoraButton @JvmOverloads constructor(
         }
 
         typedArray.recycle()
+
+        convertStringIntoValue()
+    }
+
+    private fun convertStringIntoValue() {
+        val textValue = findViewById<TextView>(R.id.calculadora_button)?.text.toString().lowercase()
+
+        if (textValue.isBlank() || textValue == "null") {
+            return
+        }
+
+        value = when (textValue) {
+            "x" -> "*"
+            "+/-" -> "signal"
+            else -> textValue
+        }
     }
 }

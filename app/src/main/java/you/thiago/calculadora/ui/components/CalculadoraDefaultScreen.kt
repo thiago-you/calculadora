@@ -14,7 +14,21 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
     defStyleRes: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
+    private var textViewScreen: TextView? = null
+
     init {
         LayoutInflater.from(context).inflate(R.layout.default_screen, this)
+
+        textViewScreen = findViewById(R.id.tv_screen)
+    }
+
+    fun setButtonValue(value: String) {
+        val currentValue = textViewScreen?.text.toString()
+
+        if (currentValue == "0") {
+            textViewScreen?.text = value
+        } else {
+            textViewScreen?.text = currentValue.plus(value)
+        }
     }
 }
