@@ -10,16 +10,26 @@ Calculadora básica para projeto da Pós PUCPR 2023.
 
 ### Demonstração
 #### Tema Escuro
-<img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_1.png" width="250" height="500">
+<p align="center">
+    <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_1.png" width="300" height="700">
+</p>
 
 #### Tema Claro
-<img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_2.png" width="250" height="500">
+<p align="center">
+    <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_2.png" width="300" height="700">
+</p>
 
 #### Layout Avançado
-<img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_3.png" width="250" height="500">
+<p align="center">
+    <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_3.png" width="300" height="700">
+</p>
 
 #### Soma Básica
-<img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_4.png" width="250" height="500">
+<p align="center">
+<img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_4.png" width="300" height="700">
+</p>
 
 #### Tela Responsiva
-<img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_5.png" width="250" height="500">
+<p align="center">
+    <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_5.png" width="300" height="700">
+</p>
