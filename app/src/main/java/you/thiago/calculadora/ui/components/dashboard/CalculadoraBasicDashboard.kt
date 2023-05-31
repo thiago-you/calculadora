@@ -1,4 +1,4 @@
-package you.thiago.calculadora.ui.components
+package you.thiago.calculadora.ui.components.dashboard
 
 import android.content.Context
 import android.util.AttributeSet
