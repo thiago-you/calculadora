@@ -33,7 +33,7 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
     }
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.default_screen, this)
+        LayoutInflater.from(context).inflate(R.layout.screen_default, this)
     }
 
     fun setTitle(@StringRes title: Int) {

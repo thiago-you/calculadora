@@ -23,12 +23,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <you.thiago.calculadora.ui.dashboard.CalculadoraBasicDashboard
+        <you.thiago.calculadora.ui.dashboard.CalculadoraDashboardBasic
             android:id="@+id/dashboard_basic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <you.thiago.calculadora.ui.dashboard.CalculadoraAdvancedDashboard
+        <you.thiago.calculadora.ui.dashboard.CalculadoraDashboardAdvanced
             android:id="@+id/dashboard_advanced"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
