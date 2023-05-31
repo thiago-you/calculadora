@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#FF000000</color>
+    <color name="colorSecondary">#FFFFFFFF</color>
+    <color name="colorAccent">#369EEF</color>
+    <color name="colorBackground">#222222</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="button_primary">#3F3F3F</color>
+    <color name="button_primary_dark">#222222</color>
+    <color name="button_primary_dark_border">#1C1C1C</color>
     <color name="button_primary_border">#2E2E2E</color>
-    <color name="button_secondary">#0A80DD</color>
-    <color name="button_secondary_border">#0562AC</color>
+    <color name="button_secondary">#369EEF</color>
+    <color name="button_secondary_border">#1D81D1</color>
+    <color name="status_bar_color">@color/colorAccent</color>
 </resources>

@@ -6,23 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include
-        android:id="@+id/layout_screen"
+    <you.thiago.calculadora.ui.components.CalculadoraDefaultScreen
+        android:id="@+id/screen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/layout_dashboard"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        layout="@layout/screen" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <include
-        android:id="@+id/layout_dashboard"
+    <you.thiago.calculadora.ui.components.CalculadoraBasicDashboard
+        android:id="@+id/dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        layout="@layout/dashboard" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

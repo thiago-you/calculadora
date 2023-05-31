@@ -1,3 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Calculadora</string>
+    <string name="screenStartValue" tools:ignore="ExtraTranslation">0</string>
 </resources>

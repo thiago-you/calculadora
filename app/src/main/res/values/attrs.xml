@@ -2,5 +2,8 @@
 <resources>
     <declare-styleable name="CalculadoraButton">
         <attr format="string" name="value"/>
+        <attr format="integer" name="btnSize"/>
+        <attr format="color" name="btnColor"/>
+        <attr format="reference" name="btnBackground"/>
     </declare-styleable>
 </resources>

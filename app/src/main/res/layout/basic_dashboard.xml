@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="4dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,6 +16,7 @@
         <you.thiago.calculadora.ui.components.CalculadoraButton
             android:id="@+id/btn_percent"
             android:layout_width="match_parent"
+            app:btnBackground="@drawable/button_background_dark"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:value="%" />
@@ -23,6 +25,7 @@
             android:id="@+id/btn_clear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:btnBackground="@drawable/button_background_dark"
             android:layout_weight="1"
             app:value="C" />
 
@@ -30,12 +33,14 @@
             android:id="@+id/btn_divide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:btnBackground="@drawable/button_background_dark"
             android:layout_weight="1"
             app:value="/" />
 
         <you.thiago.calculadora.ui.components.CalculadoraButton
             android:id="@+id/btn_delete"
             android:layout_width="match_parent"
+            app:btnBackground="@drawable/button_background_dark"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:value="DEL" />
@@ -74,6 +79,7 @@
             android:id="@+id/btn_multiply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:btnBackground="@drawable/button_background_dark"
             android:layout_weight="1"
             app:value="X" />
 
@@ -112,6 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
             app:value="-" />
 
     </LinearLayout>
@@ -149,6 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
             app:value="+" />
 
     </LinearLayout>
@@ -186,7 +194,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:value="=" />
+            app:value="="
+            app:btnSize="35"
+            app:btnBackground="@drawable/button_background_secondary"/>
 
     </LinearLayout>
 
