@@ -78,10 +78,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun Bundle?.storeTheme() {
-        this?.putInt(SELECTED_THEME, when (selectedTheme) {
+        val value = when (selectedTheme) {
             ThemeState.LIGHT -> 1
             else -> 0
-        })
+        }
+
+        this?.putInt(SELECTED_THEME, value)
     }
 
     private fun Bundle?.restoreTheme() {
