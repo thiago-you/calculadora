@@ -1,5 +1,5 @@
 # Calculadora - PUCPR 2023
-Calculadora básica para projeto da Pós PUCPR 2023.
+Calculadora básica para projeto da PÓS PUCPR 2023.
 
 ### Funcionalidades
 - Cálculos Básicos
