@@ -93,10 +93,12 @@ open class CalculadoraBasic(context: Context) : Calculadora {
         var secondNumber = sequences[1].convertDouble()
 
         if (isPercentage) {
-            secondNumber *= firstNumber / 100
+            secondNumber = (secondNumber / 100) * firstNumber
         }
 
-        return doOperation(firstNumber, secondNumber, operator).addSeparatorToOperation()
+        return doOperation(firstNumber, secondNumber, operator)
+            .addSeparatorToOperation()
+            .capDecimals()
     }
 
     private fun invertSignal(currentValue: String): String {
@@ -219,5 +221,20 @@ open class CalculadoraBasic(context: Context) : Calculadora {
         }
 
         return (divideTo / 100) * this
+    }
+
+    private fun String.capDecimals(): String {
+        val containsSeparator = this.contains(",")
+
+        if (containsSeparator) {
+            val value = this.substringBefore(",")
+            val decimals = this.substringAfter(",")
+
+            if (decimals.length > 4) {
+                return "$value," + decimals.substring(0, 3)
+            }
+        }
+
+        return this
     }
 }
