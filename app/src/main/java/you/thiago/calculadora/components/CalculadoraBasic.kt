@@ -9,7 +9,10 @@ open class CalculadoraBasic(context: Context) : Calculadora {
     private val weakContext = WeakReference(context)
 
     override fun operateValue(currentValue: String, value: String): String {
-        return if (currentValue == "0" && value.isNumeric() || (currentValue == "0" && value == "-")) {
+        val isAddingDirectValue = currentValue == "0" && value.isNumeric()
+        val isAddingNegativeSignal = currentValue == "0" && value == "-"
+
+        return if (isAddingDirectValue || isAddingNegativeSignal) {
             value
         } else {
             return when (value) {
@@ -38,7 +41,7 @@ open class CalculadoraBasic(context: Context) : Calculadora {
             }
         }
 
-        return String()
+        return clearValue()
     }
 
     private fun addValue(currentValue: String, value: String): String {

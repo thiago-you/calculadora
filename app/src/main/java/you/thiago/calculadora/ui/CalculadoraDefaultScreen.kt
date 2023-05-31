@@ -11,9 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import you.thiago.calculadora.R
-import you.thiago.calculadora.enums.ThemeState
 import you.thiago.calculadora.components.Calculadora
 import you.thiago.calculadora.components.CalculadoraBasic
+import you.thiago.calculadora.enums.ThemeState
 
 class CalculadoraDefaultScreen @JvmOverloads constructor(
     context: Context,
