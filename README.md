@@ -9,27 +9,27 @@ Calculadora básica para projeto da Pós PUCPR 2023.
 - Layout componentizado
 
 ### Demonstração
-#### Tema Escuro
 <p align="center" width="100%">
+    #### Tema Escuro
     <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_1.png" width="300" height="700">
 </p>
 
-#### Tema Claro
 <p align="center" width="100%">
+    #### Tema Claro
     <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_2.png" width="300" height="700">
 </p>
 
-#### Layout Avançado
 <p align="center" width="100%">
+    #### Layout Avançado
     <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_3.png" width="300" height="700">
 </p>
 
-#### Soma Básica
 <p align="center" width="100%">
-<img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_4.png" width="300" height="700">
+    #### Soma Básica
+    <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_4.png" width="300" height="700">
 </p>
 
-#### Visor numérico responsivo
 <p align="center" width="100%">
+    #### Visor numérico responsivo
     <img src="https://github.com/thiago-you/calculadora/blob/main/sample/screenshot_5.png" width="300" height="700">
 </p>
