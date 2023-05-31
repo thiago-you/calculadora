@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Calculadora</string>
     <string name="footer" tools:ignore="ExtraTranslation">Thiago You @ 2023 - PUC</string>
-    <string name="footer_emoji" tools:ignore="ExtraTranslation">🧙</string>
     <string name="basic_dashboard" tools:ignore="ExtraTranslation">Calculadora Básica</string>
     <string name="advanced_dashboard" tools:ignore="ExtraTranslation">Calculadora Avançada (demo)</string>
     <string name="screenStartValue" tools:ignore="ExtraTranslation">0</string>
