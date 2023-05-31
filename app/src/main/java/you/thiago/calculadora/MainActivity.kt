@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isVisible
 import you.thiago.calculadora.databinding.ActivityMainBinding
 import you.thiago.calculadora.enums.ThemeState
 
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         savedInstanceState.restoreTheme()
 
         setupButtonList()
-        setupTheme()
+        setupScreenEvents()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -49,7 +50,17 @@ class MainActivity : AppCompatActivity() {
         savedInstanceState.restoreTheme()
     }
 
-    private fun setupTheme() {
+    private fun setupScreenEvents() {
+        binding.screen.setupDashboardSwitch {
+            binding.dashboardContent.showNext()
+
+            if (binding.dashboardBasic.isVisible) {
+                binding.screen.setTitle(R.string.basic_dashboard)
+            } else {
+                binding.screen.setTitle(R.string.advanced_dashboard)
+            }
+        }
+
         binding.screen.setupThemeSwitch(selectedTheme).observe(this) { theme ->
             if (theme != null && selectedTheme != theme) {
                 selectedTheme = theme
@@ -59,7 +70,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupButtonList() {
-        binding.dashboard.setupDashboardScreen(binding.screen)
+        binding.dashboardBasic.setupDashboardScreen(binding.screen)
+        binding.dashboardAdvanced.setupDashboardScreen(binding.screen)
     }
 
     private fun configTheme(theme: ThemeState) {

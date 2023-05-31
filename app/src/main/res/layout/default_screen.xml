@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/swicth_dashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -23,12 +24,12 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/tv_scren_title"
+            android:id="@+id/tv_screen_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top|start"
-            android:text="@string/basic_screen"
+            android:text="@string/basic_dashboard"
             android:textColor="?android:attr/colorPrimary"
             android:textSize="@dimen/title_text_size" />
 

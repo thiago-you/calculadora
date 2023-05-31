@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_rad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="RAD" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="LOG" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="%" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="C" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_divide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="/" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="⌫" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="7" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="8" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="9" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="IN" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_cos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="COS" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_multiply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="X" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="4" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="5" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="6" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_e"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="e" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_tan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="TAN" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_minus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="-" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="1" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="2" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="3" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_square"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="√" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_sin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="SIN" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_adition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="+" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_signal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="+/-" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="0" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_separator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:value="," />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_exponential"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="x²" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_cof"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_dark"
+            app:value="COF" />
+
+        <you.thiago.calculadora.ui.components.CalculadoraButton
+            android:id="@+id/btn_equals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:btnBackground="@drawable/button_background_secondary"
+            app:btnSize="35"
+            app:value="=" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
@@ -19,12 +20,24 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
     defStyleRes: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private var textViewScreen: TextView? = null
+    private val textViewScreen: TextView? by lazy { findViewById(R.id.tv_screen) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.default_screen, this)
+    }
 
-        textViewScreen = findViewById(R.id.tv_screen)
+    fun setTitle(@StringRes title: Int) {
+        findViewById<TextView>(R.id.tv_screen_title)?.setText(title)
+    }
+
+    fun setupDashboardSwitch(callback: () -> Unit) {
+        findViewById<ImageView>(R.id.swicth_dashboard)?.setOnClickListener {
+            callback()
+        }
+
+        findViewById<TextView>(R.id.tv_screen_title)?.setOnClickListener {
+            callback()
+        }
     }
 
     fun setupThemeSwitch(selectedTheme: ThemeState): LiveData<ThemeState?> {
