@@ -38,6 +38,7 @@ class CalculadoraBasicDashboard @JvmOverloads constructor(
         buttonList.add(findViewById(R.id.btn_delete))
         buttonList.add(findViewById(R.id.btn_equals))
         buttonList.add(findViewById(R.id.btn_divide))
+        buttonList.add(findViewById(R.id.btn_separator))
     }
 
     fun setupDashboardScreen(screen: CalculadoraDefaultScreen) {
