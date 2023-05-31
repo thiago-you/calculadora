@@ -3,9 +3,14 @@ package you.thiago.calculadora.ui.components
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import you.thiago.calculadora.R
+import you.thiago.calculadora.enums.ThemeState
 
 class CalculadoraDefaultScreen @JvmOverloads constructor(
     context: Context,
@@ -20,6 +25,28 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.default_screen, this)
 
         textViewScreen = findViewById(R.id.tv_screen)
+    }
+
+    fun setupThemeSwitch(selectedTheme: ThemeState): LiveData<ThemeState?> {
+        val data = MutableLiveData(selectedTheme)
+
+        val imageView = findViewById<ImageView>(R.id.theme_switch)
+
+        if (data.value == ThemeState.LIGHT) {
+            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_wb_sunny_24))
+        } else {
+            imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_mode_night_24))
+        }
+
+        imageView?.setOnClickListener {
+            data.postValue(data.value?.switchTheme())
+        }
+
+        if (data.value == ThemeState.EMPTY) {
+            data.postValue(ThemeState.DARK)
+        }
+
+        return data
     }
 
     fun setButtonValue(value: String) {
