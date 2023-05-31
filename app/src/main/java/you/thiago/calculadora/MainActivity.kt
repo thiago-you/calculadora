@@ -2,7 +2,6 @@ package you.thiago.calculadora
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
@@ -11,43 +10,15 @@ import you.thiago.calculadora.enums.ThemeState
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        private const val SELECTED_THEME = "selected_theme"
-    }
-
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
-    private var selectedTheme = ThemeState.EMPTY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
 
-        savedInstanceState.restoreTheme()
-
         setupButtonList()
         setupScreenEvents()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.storeTheme()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        outState.storeTheme()
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onRestoreInstanceState(savedInstanceState, persistentState)
-        savedInstanceState.restoreTheme()
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        savedInstanceState.restoreTheme()
     }
 
     private fun setupScreenEvents() {
@@ -61,10 +32,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.screen.setupThemeSwitch(selectedTheme).observe(this) { theme ->
-            if (theme != null && selectedTheme != theme) {
-                selectedTheme = theme
-                configTheme(theme)
+        binding.screen.setupThemeSwitch(getThemeState()).observe(this) { theme ->
+            val uiTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+
+            when {
+                theme == ThemeState.LIGHT && uiTheme == Configuration.UI_MODE_NIGHT_NO -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+                theme == ThemeState.DARK && uiTheme == Configuration.UI_MODE_NIGHT_YES -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
             }
         }
     }
@@ -74,35 +51,13 @@ class MainActivity : AppCompatActivity() {
         binding.dashboardAdvanced.setupDashboardScreen(binding.screen)
     }
 
-    private fun configTheme(theme: ThemeState) {
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+    private fun getThemeState(): ThemeState {
+        return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                if (theme == ThemeState.LIGHT) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                }
+                ThemeState.DARK
             }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                if (theme == ThemeState.DARK) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                }
-            }
-        }
-    }
-
-    private fun Bundle?.storeTheme() {
-        val value = when (selectedTheme) {
-            ThemeState.LIGHT -> 1
-            else -> 0
-        }
-
-        this?.putInt(SELECTED_THEME, value)
-    }
-
-    private fun Bundle?.restoreTheme() {
-        this?.getInt(SELECTED_THEME)?.also {
-            selectedTheme = when (it) {
-                1 -> ThemeState.LIGHT
-                else -> ThemeState.DARK
+            else -> {
+                ThemeState.LIGHT
             }
         }
     }

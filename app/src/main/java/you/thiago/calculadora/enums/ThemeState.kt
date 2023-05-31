@@ -1,7 +1,7 @@
 package you.thiago.calculadora.enums
 
 enum class ThemeState {
-    EMPTY, DARK, LIGHT;
+    DARK, LIGHT;
 
     fun switchTheme(): ThemeState {
         if (this == DARK) {

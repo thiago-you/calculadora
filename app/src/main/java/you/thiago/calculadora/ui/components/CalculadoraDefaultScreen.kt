@@ -55,10 +55,6 @@ class CalculadoraDefaultScreen @JvmOverloads constructor(
             data.postValue(data.value?.switchTheme())
         }
 
-        if (data.value == ThemeState.EMPTY) {
-            data.postValue(ThemeState.DARK)
-        }
-
         return data
     }
 
