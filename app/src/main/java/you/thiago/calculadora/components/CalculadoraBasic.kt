@@ -55,14 +55,18 @@ open class CalculadoraBasic(context: Context) : Calculadora {
             if (!currentValue.last().isNumeric()) {
                 currentValue.dropLast(1).plus(value)
             } else if (value != "," && currentValue.hasOperator()) {
-                calculateValue(currentValue).plus(value)
+                if (value == "%") {
+                    calculateValue(currentValue, true)
+                } else {
+                    calculateValue(currentValue).plus(value)
+                }
             } else {
                 currentValue.plus(value)
             }
         }
     }
 
-    private fun calculateValue(currentValue: String): String {
+    private fun calculateValue(currentValue: String, isPercentage: Boolean = false): String {
         if (currentValue.length == 1) {
             return currentValue
         }
@@ -86,12 +90,16 @@ open class CalculadoraBasic(context: Context) : Calculadora {
         }
 
         val firstNumber = sequences[0].convertDouble()
-        val secondNumber = sequences[1].convertDouble()
+        var secondNumber = sequences[1].convertDouble()
+
+        if (isPercentage) {
+            secondNumber *= firstNumber / 100
+        }
 
         return doOperation(firstNumber, secondNumber, operator).addSeparatorToOperation()
     }
 
-    protected fun invertSignal(currentValue: String): String {
+    private fun invertSignal(currentValue: String): String {
         if (currentValue.isBlank() || currentValue == "0") {
             return String()
         }
