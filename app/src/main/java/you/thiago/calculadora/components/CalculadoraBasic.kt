@@ -52,30 +52,32 @@ open class CalculadoraBasic(context: Context) : Calculadora {
 
     private fun addValue(currentValue: String, value: String): String {
         if (value == ",") {
-            if (currentValue.isBlank()) {
-                return clearValue()
-            } else if (currentValue.last() == ',') {
-                return currentValue
+            return addSeparator(currentValue)
+        }
+        if (value.isNumeric()) {
+            return currentValue.plus(value)
+        }
+
+        return validateValueToAdd(currentValue.trimValue(), value)
+    }
+
+    private fun validateValueToAdd(currentValue: String, value: String): String {
+        if (currentValue.last() == ',') {
+            return currentValue.plus("0").plus(" $value ")
+        }
+        if (!currentValue.last().isNumeric()) {
+            return currentValue.dropLast(1).plus(" $value ")
+        }
+
+        if (currentValue.hasOperator()) {
+            return if (value == "%") {
+                calculateValue(currentValue, true)
+            } else {
+                calculateValue(currentValue).plus(" $value ")
             }
         }
 
-        return if (value.isNumeric()) {
-            currentValue.plus(value)
-        } else {
-            currentValue.trimValue().let { _currentValue ->
-                if (!_currentValue.last().isNumeric()) {
-                    _currentValue.dropLast(1).plus(" $value ")
-                } else if (value != "," && _currentValue.hasOperator()) {
-                    if (value == "%") {
-                        calculateValue(_currentValue, true)
-                    } else {
-                        calculateValue(_currentValue).plus(" $value ")
-                    }
-                } else {
-                    _currentValue.plus(" $value ")
-                }
-            }
-        }
+        return currentValue.plus(" $value ")
     }
 
     private fun doCalculation(currentValue: String): String {
@@ -92,13 +94,38 @@ open class CalculadoraBasic(context: Context) : Calculadora {
         return calculateValue(currentValue.trimValue())
     }
 
+    private fun addSeparator(currentValue: String): String {
+        if (currentValue.isBlank()) {
+            return clearValue()
+        } else if (currentValue.trimValue().last() == ',') {
+            return currentValue
+        }
+
+        val operator = currentValue.getOperator()
+
+        if (operator.isNullOrBlank() && currentValue.contains(",")) {
+            return currentValue
+        }
+
+        val sequences = currentValue.getSequences(operator ?: String())
+
+        if (sequences.size < 2) {
+            return currentValue
+        }
+
+        if (sequences[1].contains(",")) {
+            return currentValue
+        }
+
+        return currentValue.plus(",")
+    }
+
     private fun calculateValue(currentValue: String, isPercentage: Boolean = false): String {
         if (currentValue.length == 1) {
             return currentValue
         }
 
         val value = currentValue.getValidValue()
-
         val operator = value.getOperator()
 
         if (operator.isNullOrBlank()) {
@@ -183,7 +210,7 @@ open class CalculadoraBasic(context: Context) : Calculadora {
     }
 
     private fun String?.getOperator(): String? {
-        return this?.removeSeparator()?.map { return@map it.toString() }?.lastOrNull {
+        return this?.trimValue()?.removeSeparator()?.map { return@map it.toString() }?.lastOrNull {
             !it.isNumeric()
         }
     }
