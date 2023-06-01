@@ -117,6 +117,10 @@ open class CalculadoraBasic(context: Context) : Calculadora {
             return currentValue
         }
 
+        if (!currentValue.last().isNumeric()) {
+            return currentValue.plus("0,")
+        }
+
         return currentValue.plus(",")
     }
 
