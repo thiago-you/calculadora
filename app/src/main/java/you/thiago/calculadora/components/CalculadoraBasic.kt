@@ -18,7 +18,7 @@ open class CalculadoraBasic(context: Context) : Calculadora {
             return when (value) {
                 "c" -> clearValue()
                 "⌫" -> deleteValue(currentValue)
-                "=" -> calculateValue(currentValue)
+                "=" -> doCalculation(currentValue)
                 "signal" -> invertSignal(currentValue)
                 else -> addValue(currentValue, value)
             }
@@ -30,40 +30,66 @@ open class CalculadoraBasic(context: Context) : Calculadora {
     }
 
     private fun deleteValue(currentValue: String): String {
-        if (currentValue != "0") {
+        if (currentValue != "0" && currentValue.isNotBlank()) {
             val isNegativeValue = currentValue.first() == '-' && currentValue.length == 2
             val isUniqueValue = currentValue.length == 1
 
-            return if (isUniqueValue || isNegativeValue) {
-                weakContext.get()?.getString(R.string.screenStartValue) ?: String()
+            val value = if (isUniqueValue || isNegativeValue) {
+                clearValue()
             } else {
-                currentValue.dropLast(1)
+                currentValue.dropLast(2.takeIf { currentValue.last() == ' ' } ?: 1)
             }
+
+            if (value.isEmpty()) {
+                return clearValue()
+            }
+
+            return value
         }
 
         return clearValue()
     }
 
     private fun addValue(currentValue: String, value: String): String {
-        if (value == "," && currentValue.last() == ',') {
-            return String()
+        if (value == ",") {
+            if (currentValue.isBlank()) {
+                return clearValue()
+            } else if (currentValue.last() == ',') {
+                return currentValue
+            }
         }
 
         return if (value.isNumeric()) {
             currentValue.plus(value)
         } else {
-            if (!currentValue.last().isNumeric()) {
-                currentValue.dropLast(1).plus(value)
-            } else if (value != "," && currentValue.hasOperator()) {
-                if (value == "%") {
-                    calculateValue(currentValue, true)
+            currentValue.trimValue().let { _currentValue ->
+                if (!_currentValue.last().isNumeric()) {
+                    _currentValue.dropLast(1).plus(" $value ")
+                } else if (value != "," && _currentValue.hasOperator()) {
+                    if (value == "%") {
+                        calculateValue(_currentValue, true)
+                    } else {
+                        calculateValue(_currentValue).plus(" $value ")
+                    }
                 } else {
-                    calculateValue(currentValue).plus(value)
+                    _currentValue.plus(" $value ")
                 }
-            } else {
-                currentValue.plus(value)
             }
         }
+    }
+
+    private fun doCalculation(currentValue: String): String {
+        if (currentValue.trimValue().isBlank()) {
+            return String()
+        }
+
+        val lastChar = currentValue.trimValue().last()
+
+        if (!lastChar.isNumeric() && lastChar != '%') {
+            return currentValue
+        }
+
+        return calculateValue(currentValue.trimValue())
     }
 
     private fun calculateValue(currentValue: String, isPercentage: Boolean = false): String {
@@ -71,11 +97,7 @@ open class CalculadoraBasic(context: Context) : Calculadora {
             return currentValue
         }
 
-        val value = if (currentValue.last() == ',') {
-            currentValue.plus("0").changeSeparatorToOperation()
-        } else {
-            currentValue.changeSeparatorToOperation()
-        }
+        val value = currentValue.getValidValue()
 
         val operator = value.getOperator()
 
@@ -236,5 +258,23 @@ open class CalculadoraBasic(context: Context) : Calculadora {
         }
 
         return this
+    }
+
+    private fun String?.trimValue(): String {
+        return (this ?: String()).replace("\\s".toRegex(), "")
+    }
+
+    private fun String?.getValidValue(): String {
+        if (this.isNullOrBlank()) {
+            return String()
+        }
+
+        val value = if (this.last() == ',') {
+            this.plus("0")
+        } else {
+            this
+        }
+
+        return value.changeSeparatorToOperation().trimValue()
     }
 }
